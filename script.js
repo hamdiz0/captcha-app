@@ -13,11 +13,11 @@ const deleteButton = document.getElementById('delete');
 
 // List of tips
 const tips = [
-    "Cfzefzef",
-    "Bieezfezf.",
-    "Excellfzefr.",
-    "Captchefzfzenuez votre chemin.",
-    "Super! rterte captcha."
+    "Comme la pollution de l'air bloque les poumons, la pollution plastique empêche les océans de filtrer l'eau correctement.",
+    "Comme les substances nocives affectent notre digestion, les microplastiques nuisent à la faune marine et à la santé humaine.",
+    "Comme les oreilles humaines sont vitales pour entendre, le bruit empêche les animaux marins de naviguer correctement.",
+    "Les reins filtrent les déchets; si surchargés, ils ne fonctionnent plus, tout comme l'eutrophisation surcharge les océans.",
+    "Comme un cœur obstrué ne fonctionne plus bien, la pollution perturbe la régulation écologique des océans."
 ];
 
 // Function to select a random tip
