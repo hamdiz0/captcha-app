@@ -70,7 +70,7 @@ let isJumping = false;
 let jumpHeight = 220;
 let jumpSpeed = 10;
 let gravity = 8;
-let groundLevel = container.clientHeight - jumper.clientHeight - 500;
+let groundLevel = container.clientHeight - jumper.clientHeight - 510;
 let isOnGround = true;
 let positionX = 280;
 let positionY = groundLevel;
@@ -133,13 +133,19 @@ function gameLoop() {
     animationFrameId = requestAnimationFrame(gameLoop);
 }
 
+function changeJumperImage(image) {
+    jumper.style.backgroundImage = `url(${image})`;
+}
+// Change jumper's background image based on collisions or events
 // Handle jumper movement
 function handleJumperMovement() {
     if (keys['ArrowLeft']) {
         positionX = Math.max(positionX - 5, 0);
+        changeJumperImage('./imgs/dol-left.png');
     }
     if (keys['ArrowRight']) {
         positionX = Math.min(positionX + 5, container.clientWidth - jumper.clientWidth);
+        changeJumperImage('./imgs/dol-right.png');
     }
 
     // Handle jumping with Space or ArrowUp key
@@ -158,6 +164,7 @@ function handleJumperMovement() {
     } else {
         positionY = groundLevel;
         isOnGround = true;
+        changeJumperImage('./imgs/dol-up.png');
     }
 
     jumper.style.left = `${positionX}px`;
@@ -246,6 +253,7 @@ function detectCollisions() {
             jumperRect.top < itemRect.bottom &&
             jumperRect.bottom > itemRect.top
         ) {
+            changeJumperImage('./imgs/dol-down.png');
             userInputDiv.textContent += item.letter;
             listContainer.removeChild(item.element);
             listItems = listItems.filter(i => i !== item);
@@ -255,7 +263,7 @@ function detectCollisions() {
 }
 
 // Spawn items at regular intervals
-setInterval(createListItem, 500);
+setInterval(createListItem, 600);
 
 // Start the game loop
 gameLoop();
