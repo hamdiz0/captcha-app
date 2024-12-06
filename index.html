@@ -9,17 +9,16 @@
 
 </head>
 <body>
-<div id="success-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="close-modal">&times;</span>
-        <p class="tip"></p>
-    </div>
+
+<div id="tip-container" style="display: none; border: 1px solid #ccc; padding: 10px; width: 300px; position: relative;">
+    <p class="tip"></p>
+    <button onclick="closeTip()" style="position: absolute; top: 5px; right: 5px;">&times;</button>
 </div>
 
 
 <div class="captcha-container">
     <div class="option" id="option"></div>
-    <button class="change" id="change-button">Change</button>
+    <button class="change" id="change-button">Change Code</button>
     <div class="user-input" id="user-input">fol</div>
     <button class="delete" id="delete">Delete one letter</button>
     <button class="reset" id="reset-button">Reset</button>
@@ -34,40 +33,6 @@
 </div>
 <script src="script.js"></script>
 </body>
-<script>
-    // Récupération des éléments du DOM
-    const modal = document.getElementById('success-modal');
-    const closeModal = document.getElementById('close-modal');
-
-    // Fonction pour afficher le modal
-    function showModal() {
-        modal.style.display = 'block';
-    }
-
-    // Fonction pour cacher le modal
-    function hideModal() {
-        modal.style.display = 'none';
-    }
-
-    // Événement pour fermer le modal
-    closeModal.addEventListener('click', hideModal);
-
-    // Fermer le modal si l'utilisateur clique en dehors du contenu
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            hideModal();
-        }
-    });
-
-    // Remplacez alert('Correct!') par showModal()
-    function checkUserInput() {
-        if (userInputDiv.textContent === currentCode) {
-            showModal();
-            resetGame();
-        }
-    }
-
-</script>
 <script>
     // Generate waves dynamically
     const ocean = document.getElementById("ocean");

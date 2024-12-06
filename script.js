@@ -11,6 +11,33 @@ const changeButton = document.getElementById('change-button');
 
 const deleteButton = document.getElementById('delete');
 
+// List of tips
+const tips = [
+    "Cfzefzef",
+    "Bieezfezf.",
+    "Excellfzefr.",
+    "Captchefzfzenuez votre chemin.",
+    "Super! rterte captcha."
+];
+
+// Function to select a random tip
+function getRandomTip() {
+    const randomIndex = Math.floor(Math.random() * tips.length);
+    return tips[randomIndex];
+}
+
+// Function to show the tip
+function showTip() {
+    const tipContainer = document.getElementById("tip-container");
+    const tipElement = tipContainer.querySelector(".tip");
+    tipElement.textContent = getRandomTip(); // Set a random tip
+    tipContainer.style.display = "block"; // Show the tip container
+}
+
+// Function to hide the tip
+function closeTip() {
+    document.getElementById("tip-container").style.display = "none"; // Hide the tip container
+}
 
 
 function deleteLastLetter() {
@@ -235,6 +262,13 @@ function moveListItems() {
             listItems.splice(index, 1);
         }
     });
+}
+
+function checkUserInput() {
+    if (userInputDiv.textContent === currentCode) {
+        showTip(); // Show the tip
+        resetGame(); // Reset the game
+    }
 }
 
 // Detect collisions between jumper and list items
