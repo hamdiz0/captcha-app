@@ -11,6 +11,8 @@ const changeButton = document.getElementById('change-button');
 
 const deleteButton = document.getElementById('delete');
 
+
+
 function deleteLastLetter() {
     // Get the current content of the user input
     const currentText = userInputDiv.textContent;
@@ -25,8 +27,10 @@ function deleteLastLetter() {
 deleteButton.addEventListener('click', deleteLastLetter);
 
 const images = [
-    { src: './imgs/1.png', code: 'xymfn' },
-    { src: './imgs/2.png', code: 'pybee' },
+    { src: './imgs/captcha/1.png', code: 'vugae' },
+    { src: './imgs/captcha/2.png', code: 'oecan' },
+    { src: './imgs/captcha/3.png', code: 'sbael' },
+    { src: './imgs/captcha/4.png', code: 'folt' },
 ];
 
 // Function to get a random image, excluding the current one
@@ -56,13 +60,7 @@ optionDiv.style.backgroundImage = `url(${currentImage.src})`;
 // Event listener for "Change" button
 changeButton.addEventListener('click', setNewImage);
 
-// Check the user input against the current code
-function checkUserInput() {
-    if (userInputDiv.textContent === currentCode) {
-        alert('Correct!');
-        resetGame();
-    }
-}
+
 
 // Game variables for jumper movement and items
 let keys = {};

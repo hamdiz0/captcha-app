@@ -6,37 +6,69 @@ body {
     height: 100vh;
     gap: 15px;
     flex-direction: column;
-    background-color: rgb(30, 30,30); /* Sky blue */
+
 }
 
 .container {
     position: relative;
     width: 600px;
     height: 600px;
-    border: 2px solid black;
-    background-color: #eee; /* Playground color */
+    border-radius: 15px; /* Coins arrondis */
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Dégradé subtil */
     overflow: hidden;
-    border-radius: 5px;
+
+    /* Nouvelle bordure stylisée */
+    border: 4px solid transparent; /* Bordure initialement invisible */
+    background-clip: padding-box; /* Assure que le dégradé n'affecte pas l'intérieur */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 0 5px rgba(255, 255, 255, 0.3); /* Ombres externes et internes */
+
+    /* Effet de bordure dégradée */
+    position: relative;
+    z-index: 0;
 }
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(135deg, #0078ff, #00d4ff); /* Dégradé bleu brillant */
+    border-radius: inherit; /* Suit le rayon des coins */
+    z-index: -1; /* Derrière le contenu */
+    filter: blur(6px); /* Effet flou pour un aspect lumineux */
+}
+
+
 
 .ground {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 50px;
-    
+
     background-color: skyblue;
 }
 
 .jumper {
     position: absolute;
-    bottom: 0px; 
+    bottom: 0px;
     left: 180px;
     width: 50px;
     height: 80px;
-    background-image: url("./imgs/dol-up.png"); 
+    background-image: url("./imgs/dol-up.png");
     background-size: cover;
-    border-radius: 5px;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
 }
 
 .list-container {
@@ -53,29 +85,110 @@ body {
     top: 0;
     width: 50px;
     height: 50px;
-    background-color: #007bff; 
-    border-radius: 5px;
-    text-align: center;
+    background-color: #00bfff; /* Bleu océan */
+    border-radius: 50%; /* Forme de bulle */
+    display: flex; /* Pour centrer le contenu */
+    align-items: center; /* Centrer verticalement */
+    justify-content: center; /* Centrer horizontalement */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre douce */
+    animation: bubble-rise 3s infinite ease-in-out;
+
+    /* Ajout d'un effet glossy */
+    background: radial-gradient(circle, #00d4ff 0%, #007acc 100%);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: white; /* Contraste avec le fond */
+    font-size: 20px; /* Taille de la lettre */
+    font-weight: bold; /* Lettre plus visible */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Ombre pour la lettre */
+    font-family: 'Arial', sans-serif; /* Police moderne */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Animation au survol */
 }
 
-.captcha-container{
-    position: relative;
-    width: 600px;
-    height: 60px;
-    background-color: #eee; 
-    overflow: hidden;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
-    gap: 15px;
-    background-color: transparent;
+.list-item:hover {
+    transform: scale(1.1); /* Zoom sur la bulle au survol */
+    background: radial-gradient(circle, #00ffff 0%, #0066ff 100%);
+    cursor: pointer; /* Indicateur interactif */
 }
-.option{
+
+
+.captcha-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 600px;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f7f7f7, #e6e6e6); /* Dégradé léger */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+.option {
     width: 200px;
     height: 60px;
     background-color: #ff4500;
     background-size: cover; /* Ensures the image covers the entire div */
     background-position: center; /* Centers the image */
+}
+
+.option:hover {
+    transform: scale(1.05); /* Légère mise en avant au survol */
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3); /* Accentuation de l'ombre */
+}
+.user-input {
+    flex: 1;
+    height: 100%;
+    margin: 0 10px;
+    background-color: skyblue;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Effet d'inset */
+}
+
+button {
+    flex: 1;
+    height: 100%;
+    margin: 0 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Légère ombre */
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Effet de levée */
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none; /* Pas d'ombre au clic */
+}
+
+button.reset {
+    background-color: #28a745;
+}
+
+button.reset:hover {
+    background-color: #218838;
+}
+
+button.delete {
+    background-color: #dc3545;
+}
+
+button.delete:hover {
+    background-color: #c82333;
 }
 
 .img{
@@ -89,12 +202,123 @@ body {
 }
 .change{
     border: none;
-    background-color: #fff;
+    background-color: skyblue;
 }
 .reset:hover{
     background-color: aqua;
 }
 .user-input{
-    background-color: #ff4500;
+    background-color: skyblue;
     text-align: center;
+}
+
+/* Style pour le fond du modal */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Reste en place même lors du défilement */
+    z-index: 1; /* Assis au-dessus du reste de la page */
+    left: 0;
+    top: 0;
+    width: 100%; /* Pleine largeur */
+    height: 100%; /* Pleine hauteur */
+    overflow: auto; /* Active le défilement si nécessaire */
+    background-color: rgb(0,0,0); /* Couleur de fond */
+    background-color: rgba(0,0,0,0.4); /* Couleur de fond avec opacité */
+}
+
+/* Style du contenu du modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% du haut et centré horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Peut être plus ou moins, selon le besoin */
+}
+
+/* Style pour le bouton de fermeture */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Active le défilement si nécessaire */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centré horizontalement et avec un décalage vertical */
+    padding: 20px;
+    border-radius: 8px;
+    width: 40%; /* Largeur ajustable */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p {
+    font-size: 18px;
+    color: #333;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+#ocean {
+  
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, rgb(0, 50, 150), rgb(0, 150, 255) 50%);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.wave {
+    background: #a8e3ff;
+    display: inline-block;
+    height: 60%;
+    width: 10px;
+    position: absolute;
+    animation-name: dostuff;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes dostuff {
+    0% {
+        height: 60%;
+    }
+    50% {
+        height: 40%;
+    }
+    100% {
+        height: 60%;
+    }
 }
