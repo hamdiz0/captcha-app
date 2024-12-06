@@ -141,11 +141,9 @@ function changeJumperImage(image) {
 function handleJumperMovement() {
     if (keys['ArrowLeft']) {
         positionX = Math.max(positionX - 5, 0);
-        changeJumperImage('./imgs/dol-left.png');
     }
     if (keys['ArrowRight']) {
         positionX = Math.min(positionX + 5, container.clientWidth - jumper.clientWidth);
-        changeJumperImage('./imgs/dol-right.png');
     }
 
     // Handle jumping with Space or ArrowUp key
